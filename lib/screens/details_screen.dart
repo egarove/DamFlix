@@ -8,7 +8,13 @@ class DetailsScreen extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          _CustomAppBar() //queremos un appbar con tamaño personalizado
+          _CustomAppBar(), //queremos un appbar con tamaño personalizado
+          SliverList(
+            delegate: SliverChildListDelegate([
+              //aqui ya podemos usar los widgets a los que estamos acostumbrado a usar
+              //como Text
+            ]),
+          )
         ],
       )
     );
@@ -21,7 +27,7 @@ class _CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 200, 
+      expandedHeight: 500, 
       floating: false,
       pinned: true,
       snap: false,
