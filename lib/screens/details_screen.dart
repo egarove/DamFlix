@@ -5,10 +5,13 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text("Details Screen"),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Details Screen"),
       ),
+      body: Column(
+        children: [],
+      )
     );
   }
 }
