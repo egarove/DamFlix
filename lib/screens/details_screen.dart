@@ -40,7 +40,7 @@ class _CustomAppBar extends StatelessWidget {
         title: Container(
           width: double.infinity,
           alignment: Alignment.bottomCenter,
-          child: Container(child: Text("Spiderman: Coming Home"), color: Colors.white38, width: double.infinity,)
+          child: Container(child: Text("movie.name Spiderman: Coming Home"), color: Colors.white38, width: double.infinity,)
         ),
         centerTitle: true,
         background: FadeInImage(
