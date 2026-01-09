@@ -20,7 +20,7 @@ class MoviesProvider extends ChangeNotifier{
       'language': _language,
       'page': 1
     });
-    var response = await http.post(url, body: {'name': 'doodle', 'color': 'blue'});
+    var response = await http.get(url);
 
     print(response.body);
   }
