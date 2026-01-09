@@ -1,3 +1,4 @@
+import 'package:fl_damflix/widgets/cast_carrousel.dart';
 import 'package:flutter/material.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -13,7 +14,10 @@ class DetailsScreen extends StatelessWidget {
             delegate: SliverChildListDelegate([
               //aqui ya podemos usar los widgets a los que estamos acostumbrado a usar
               //como Text
-              _InfoPeli()
+              _InfoPeli(),
+              _Overview(),
+              CastCarrousel(),
+              SizedBox(height: 45,)
             ]),
           )
         ],
@@ -69,32 +73,39 @@ class _InfoPeli extends StatelessWidget {
                   height: 250,
                 ),
               ),
+              SizedBox(width: 15),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Titulo: ",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                  Text("Genero: ",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                  Text("Año: ",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),) 
+                  Text("movie-title",style: Theme.of(context).textTheme.headlineMedium, overflow: TextOverflow.ellipsis, maxLines: 2,),
+                  Text("movie-year",style: Theme.of(context).textTheme.headlineMedium, overflow: TextOverflow.ellipsis, maxLines: 1,),
+                  Row(
+                    children: [
+                      Icon(Icons.star_half, size: 30, color: Colors.amber,),
+                      Text("movie.rate",style: Theme.of(context).textTheme.headlineMedium, overflow: TextOverflow.ellipsis, maxLines: 1,),
+                    ],
+                  ),
                 ],
               )
             ],
           ),
-          SizedBox(height: 40,),
-          Container(
-            alignment: Alignment.topLeft,
-            child: Column(
-              children: [
-                Text("Spider-Man: Homecoming (conocida como Spider-Man: De regreso a casa"+
-                "en Hispanoamérica) es la primera película en solitario de Peter Parker en el Universo"+
-                "Cinematográfico de Marvel (UCM), donde un joven Peter (Tom Holland) intenta equilibrar"+
-                "su vida de estudiante con su rol de superhéroe, bajo la supervisión de Tony Stark,"+
-                "mientras se enfrenta al villano El Buitre (Adrian Toomes, interpretado por Michael"+
-                "Keaton) y aprende lo que realmente significa ser Spider-Man.",
-                style: TextStyle(fontSize: 15),),
-              ],
-            ),
-          )
-        ],
+          SizedBox(height: 10,),        ],
       ),
+    );
+  }
+}
+
+class _Overview extends StatelessWidget {
+  const _Overview({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(20),
+      child: 
+        Text("movie.description.  dnandifaijfafndjanfjdnsjfndsjfnsdjdsnfejksndfnjsndfjnjsjdnfjsndjfnejsnjdfnjesnjfsjfnjesfnjsnasjndasdnajdasnjasndadniandwadnjasndjwnajnsdjawnjdsndjwanjdnjwnndajnsdnwa",
+        textAlign: TextAlign.justify,
+        ),
     );
   }
 }
