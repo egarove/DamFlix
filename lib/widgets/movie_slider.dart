@@ -1,7 +1,11 @@
+import "package:fl_damflix/models/popular_response.dart";
+import "package:fl_damflix/providers/popular_movies_provider.dart";
 import "package:flutter/material.dart";
 
 class MovieSlider extends StatelessWidget {
-  const MovieSlider({super.key});
+  const MovieSlider({super.key, required this.movies});
+
+final List<Result1> movies;
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +23,9 @@ class MovieSlider extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
+              itemCount: movies.length,
               itemBuilder: (context, index) {
-                return MoviePoster();
+                return MoviePoster(movies, index);
               }),
           ),
           SizedBox(height: 20)
@@ -33,7 +37,10 @@ class MovieSlider extends StatelessWidget {
 
 
 class MoviePoster extends StatelessWidget {
-  const MoviePoster({super.key});
+  const MoviePoster(this.movies, this.index, {super.key});
+
+    final List<Result1> movies;
+    final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +57,7 @@ class MoviePoster extends StatelessWidget {
               /// borderRadius: BorderRadiusGeometry.circular(20), para redondear las imagenes
               child: FadeInImage(
                 placeholder: AssetImage('assets/no-image-icon-6.png'),
-                image: NetworkImage('https://es.web.img2.acsta.net/pictures/17/06/19/14/01/130456.jpg'),
+                image: NetworkImage(movies[index].fullPosterimg),
                 height: 250,
                 width: 130,
                 fit: BoxFit.cover,
@@ -59,7 +66,7 @@ class MoviePoster extends StatelessWidget {
           ),
           SizedBox(height: 10),
           Text(
-            "Spiderman: Home Coming",
+            movies[index].title,
             overflow: TextOverflow.ellipsis, //pone el titulo en una linea con puntos suspensivos
             textAlign: TextAlign.center,
             style: TextStyle(fontWeight: FontWeight.bold),

@@ -1,4 +1,5 @@
 import 'package:fl_damflix/providers/movies_provider.dart';
+import 'package:fl_damflix/providers/popular_movies_provider.dart';
 import 'package:fl_damflix/widgets/card_swiper.dart';
 import 'package:fl_damflix/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final moviesProvider = Provider.of<MoviesProvider>(context);
+    final popularProvider = Provider.of<PopularMoviesProvider>(context);
 
 
     return Scaffold(
@@ -27,7 +29,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             CardSwiper(movies: moviesProvider.onDisplayMovies,),
-            MovieSlider()
+            MovieSlider(movies: popularProvider.popularMovies)
           ],
         ),
       )
