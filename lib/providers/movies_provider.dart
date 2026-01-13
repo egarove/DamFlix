@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:fl_damflix/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -6,6 +8,8 @@ class MoviesProvider extends ChangeNotifier{
   String _apiKey = 'a68d44ce7d59d9f3c283182f4af07a16';
   String _baseUrl = 'api.themoviedb.org';
   String _language = 'es-ES';
+
+  List<Result> onDisplayMovies = [];
 
 
   MoviesProvider() {
@@ -24,6 +28,11 @@ class MoviesProvider extends ChangeNotifier{
     );
     var response = await http.get(url);
 
-    print( response.body );
+    //final Map<String, dynamic> decodeData = json.decode(response.body);
+    final nowPlayingResponse = NowPlayingResponse.fromJson(response.body);
+
+
+    print( nowPlayingResponse.results[0].title);
+    onDisplayMovies = nowPlayingResponse.results;
   }
 }
