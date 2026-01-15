@@ -10,7 +10,7 @@ final List<Result1> movies;
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red,
+      color: const Color.fromARGB(255, 235, 64, 51),
       width: double.infinity,
       height: 350,
       child: Column(

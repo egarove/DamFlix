@@ -10,7 +10,7 @@ class PopularMoviesProvider extends ChangeNotifier {
   List<Result1> popularMovies = [];
 
 
-  MoviesProvider() {
+  PopularMoviesProvider() {
     print('MoviesProvider ha sido inicializado');
 
     this.getPopularMovies();
