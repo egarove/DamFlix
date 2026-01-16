@@ -47,12 +47,12 @@ class MoviePoster extends StatelessWidget {
     return Container(
       width: 130,
       height: 190,
-      color: Colors.blueAccent,
+      color: const Color.fromARGB(255, 58, 123, 235),
       margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: [
           GestureDetector(
-            onTap: () => Navigator.pushNamed(context, 'details', arguments: 'movie-instance'),
+            onTap: () => Navigator.pushNamed(context, 'details', arguments: movies[index]),
             child: ClipRRect(
               /// borderRadius: BorderRadiusGeometry.circular(20), para redondear las imagenes
               child: FadeInImage(

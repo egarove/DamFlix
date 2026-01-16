@@ -16,7 +16,7 @@ class CardSwiper extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: size.height*0.5,
-      color: const Color.fromARGB(255, 236, 143, 2),
+      color: const Color.fromARGB(255, 236, 144, 5),
       padding: const EdgeInsets.all(25),
       child: Swiper(
         itemCount: movies.length,
@@ -27,7 +27,7 @@ class CardSwiper extends StatelessWidget {
 
           final movie = movies[index];
           return GestureDetector(
-            onTap: () => Navigator.pushNamed(context, 'details', arguments: 'movie-instance'),
+            onTap: () => Navigator.pushNamed(context, 'details', arguments: movie),
             child: ClipRRect(
               borderRadius: BorderRadiusGeometry.circular(20),
               child: FadeInImage(

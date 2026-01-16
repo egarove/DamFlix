@@ -1,3 +1,4 @@
+import 'package:fl_damflix/models/models.dart';
 import 'package:fl_damflix/widgets/cast_carrousel.dart';
 import 'package:flutter/material.dart';
 
@@ -6,16 +7,19 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final dynamic movie = ModalRoute.of(context)!.settings.arguments as dynamic ;
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          _CustomAppBar(), //queremos un appbar con tamaño personalizado
+          _CustomAppBar(movie: movie), //queremos un appbar con tamaño personalizado
           SliverList(
             delegate: SliverChildListDelegate([
               //aqui ya podemos usar los widgets a los que estamos acostumbrado a usar
               //como Text
-              _InfoPeli(),
-              _Overview(),
+              _InfoPeli(movie: movie),
+              _Overview(movie: movie),
               CastCarrousel(),
               SizedBox(height: 45,)
             ]),
@@ -27,10 +31,15 @@ class DetailsScreen extends StatelessWidget {
 }
 
 class _CustomAppBar extends StatelessWidget {
-  const _CustomAppBar({super.key});
+
+  final dynamic movie;
+
+  const _CustomAppBar({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
+
+
     return SliverAppBar(
       expandedHeight: 450, 
       floating: false,
@@ -40,12 +49,12 @@ class _CustomAppBar extends StatelessWidget {
         title: Container(
           width: double.infinity,
           alignment: Alignment.bottomCenter,
-          child: Container(child: Text("movie.name Spiderman: Coming Home"), color: Colors.white38, width: double.infinity,)
+          child: Container(child: Text(movie.title), color: Colors.white38, width: double.infinity,)
         ),
         centerTitle: true,
         background: FadeInImage(
           placeholder: AssetImage("assets/no-image-icon-6.png"),
-          image: NetworkImage('https://es.web.img2.acsta.net/pictures/17/06/19/14/01/130456.jpg'),
+          image: NetworkImage(movie.fullPosterimg),
           fit: BoxFit.cover,
           ),
       ),
@@ -54,7 +63,11 @@ class _CustomAppBar extends StatelessWidget {
 }
 
 class _InfoPeli extends StatelessWidget {
-  const _InfoPeli({super.key});
+
+final dynamic movie;
+
+
+  const _InfoPeli({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +81,7 @@ class _InfoPeli extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadiusGeometry.circular(20),
                 child: FadeInImage(
-                  placeholder: AssetImage('assets/no-image-icon-6.png'), 
+                  placeholder: AssetImage(movie.fullPosterimg), 
                   image: NetworkImage("https://es.web.img2.acsta.net/pictures/17/06/19/14/01/130456.jpg"),
                   height: 250,
                 ),
@@ -77,12 +90,12 @@ class _InfoPeli extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("movie-title",style: Theme.of(context).textTheme.headlineMedium, overflow: TextOverflow.ellipsis, maxLines: 2,),
-                  Text("movie-year",style: Theme.of(context).textTheme.headlineMedium, overflow: TextOverflow.ellipsis, maxLines: 1,),
+                  Text(movie.title,style: Theme.of(context).textTheme.headlineMedium, overflow: TextOverflow.ellipsis, maxLines: 2,),
+                  Text(movie.releaseDate.toString(),style: Theme.of(context).textTheme.headlineMedium, overflow: TextOverflow.ellipsis, maxLines: 1,),
                   Row(
                     children: [
                       Icon(Icons.star_half, size: 30, color: Colors.amber,),
-                      Text("movie.rate",style: Theme.of(context).textTheme.headlineMedium, overflow: TextOverflow.ellipsis, maxLines: 1,),
+                      Text(movie.voteAverage.toString(),style: Theme.of(context).textTheme.headlineMedium, overflow: TextOverflow.ellipsis, maxLines: 1,),
                     ],
                   ),
                 ],
@@ -96,14 +109,17 @@ class _InfoPeli extends StatelessWidget {
 }
 
 class _Overview extends StatelessWidget {
-  const _Overview({super.key});
+
+  final dynamic movie;
+
+  const _Overview({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(20),
       child: 
-        Text("movie.description.  dnandifaijfafndjanfjdnsjfndsjfnsdjdsnfejksndfnjsndfjnjsjdnfjsndjfnejsnjdfnjesnjfsjfnjesfnjsnasjndasdnajdasnjasndadniandwadnjasndjwnajnsdjawnjdsndjwanjdnjwnndajnsdnwa",
+        Text(movie.overview,
         textAlign: TextAlign.justify,
         ),
     );
