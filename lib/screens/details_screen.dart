@@ -1,6 +1,8 @@
 import 'package:fl_damflix/models/models.dart';
+import 'package:fl_damflix/providers/cast_provider.dart';
 import 'package:fl_damflix/widgets/cast_carrousel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key});
@@ -10,8 +12,12 @@ class DetailsScreen extends StatelessWidget {
 
     final dynamic movie = ModalRoute.of(context)!.settings.arguments as dynamic ;
 
-    return Scaffold(
-      body: CustomScrollView(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CastProvider(movie.id), lazy: false,),
+      ],
+      child: Scaffold(
+        body: CustomScrollView(
         slivers: [
           _CustomAppBar(movie: movie), //queremos un appbar con tamaño personalizado
           SliverList(
@@ -26,6 +32,7 @@ class DetailsScreen extends StatelessWidget {
           )
         ],
       )
+      ),
     );
   }
 }

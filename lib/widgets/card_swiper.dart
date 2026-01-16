@@ -16,7 +16,7 @@ class CardSwiper extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: size.height*0.5,
-      color: const Color.fromARGB(255, 236, 144, 5),
+      color: const Color.fromARGB(255, 240, 146, 6),
       padding: const EdgeInsets.all(25),
       child: Swiper(
         itemCount: movies.length,
